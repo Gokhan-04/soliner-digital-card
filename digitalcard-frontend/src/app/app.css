@@ -1,0 +1,30 @@
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1e293b;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Karanlık mod aktifken butonun kendi rengini de açık renge çeviriyoruz */
+:host-context(.dark-theme) .theme-toggle-btn {
+  background-color: #f8fafc;
+  color: #1e293b;
+}

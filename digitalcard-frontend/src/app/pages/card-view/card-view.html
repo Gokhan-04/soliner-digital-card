@@ -1,0 +1,95 @@
+<div class="page-wrapper" *ngIf="!loading && user">
+  <div class="card-container">
+    <div class="profile-section">
+      <img
+        class="avatar"
+        [src]="user.avatarUrl || 'https://i.pravatar.cc/300?img=12'"
+        [alt]="user.name"
+      />
+
+      <h1>{{ user.name }}</h1>
+      <p class="bio">{{ user.bio }}</p>
+    </div>
+
+    <section class="section" *ngIf="user.socialLinks && user.socialLinks.length > 0">
+      <h2>Sosyal Medya</h2>
+      <div class="social-links">
+        <a
+          *ngFor="let social of user.socialLinks"
+          [href]="social.url"
+          target="_blank"
+          class="social-button"
+        >
+          {{ social.platform }}
+        </a>
+      </div>
+    </section>
+
+    <section class="section" *ngIf="user.skills && user.skills.length > 0">
+      <h2>Yetenekler</h2>
+      <ul class="skill-list">
+        <li *ngFor="let skill of user.skills">
+          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-level">Seviye {{ skill.level }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" *ngIf="user.projects && user.projects.length > 0">
+      <h2>Projeler</h2>
+      <div class="project-list">
+        <div class="project-card" *ngFor="let project of user.projects">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <a [href]="project.link" target="_blank">Projeyi İncele</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section">
+      <h2>İletişim</h2>
+
+      <form class="contact-form" (ngSubmit)="sendMessage()">
+        <input
+          type="text"
+          name="name"
+          placeholder="Adınız"
+          [(ngModel)]="contactForm.name"
+          required
+        />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          [(ngModel)]="contactForm.email"
+          required
+        />
+
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Mesajınız"
+          [(ngModel)]="contactForm.message"
+          required
+        ></textarea>
+
+        <button type="submit" [disabled]="sendingMessage">
+          {{ sendingMessage ? 'Gönderiliyor...' : 'Gönder' }}
+        </button>
+      </form>
+
+      <p class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  Yükleniyor...
+</div>
+
+<div class="error" *ngIf="!loading && error">
+  <h2 style="color: red; text-align: center; margin-top: 50px;">{{ error }}</h2>
+</div>

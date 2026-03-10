@@ -1,0 +1,214 @@
+<div class="admin-page">
+  <div class="admin-card" *ngIf="loading">
+    <h2>Yukleniyor...</h2>
+    <p>Kullanici bilgileri getiriliyor.</p>
+  </div>
+
+  <div class="admin-card" *ngIf="!loading && user">
+    <h1>Admin Paneli</h1>
+    <p>Buradan kullanici bilgilerini ve kart icerigini yonetebilirsin.</p>
+
+    <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <section class="admin-section">
+      <h2>Kullanici Bilgileri</h2>
+
+      <div class="form-group">
+        <label for="nameInput">Ad Soyad</label>
+        <input
+          #nameInput
+          id="nameInput"
+          type="text"
+          [value]="user.name"
+          placeholder="Ad Soyad"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="emailInput">Email</label>
+        <input
+          #emailInput
+          id="emailInput"
+          type="email"
+          [value]="user.email"
+          placeholder="Email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="avatarInput">Avatar URL</label>
+        <input
+          #avatarInput
+          id="avatarInput"
+          type="text"
+          [value]="user.avatarUrl"
+          placeholder="Avatar URL"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="bioInput">Bio</label>
+        <textarea
+          #bioInput
+          id="bioInput"
+          rows="4"
+          placeholder="Bio"
+        >{{ user.bio }}</textarea>
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="updateUser(nameInput.value, emailInput.value, avatarInput.value, bioInput.value)"
+      >
+        Kullanici Bilgilerini Guncelle
+      </button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Skill Ekle</h2>
+
+      <div class="form-group">
+        <label for="skillNameInput">Skill Adi</label>
+        <input
+          #skillNameInput
+          id="skillNameInput"
+          type="text"
+          placeholder="Skill adi"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="skillLevelInput">Seviye (1-100)</label>
+        <input
+          #skillLevelInput
+          id="skillLevelInput"
+          type="number"
+          placeholder="Seviye"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="addSkill(skillNameInput.value, skillLevelInput.value)"
+      >
+        Skill Ekle
+      </button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Proje Ekle</h2>
+
+      <div class="form-group">
+        <label for="projectTitleInput">Proje Basligi</label>
+        <input
+          #projectTitleInput
+          id="projectTitleInput"
+          type="text"
+          placeholder="Proje basligi"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="projectDescriptionInput">Proje Aciklamasi</label>
+        <textarea
+          #projectDescriptionInput
+          id="projectDescriptionInput"
+          rows="4"
+          placeholder="Proje aciklamasi"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="projectLinkInput">Proje Linki</label>
+        <input
+          #projectLinkInput
+          id="projectLinkInput"
+          type="text"
+          placeholder="Proje linki"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="addProject(projectTitleInput.value, projectDescriptionInput.value, projectLinkInput.value)"
+      >
+        Proje Ekle
+      </button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Sosyal Link Ekle</h2>
+
+      <div class="form-group">
+        <label for="platformInput">Platform (örn: GitHub)</label>
+        <input
+          #platformInput
+          id="platformInput"
+          type="text"
+          placeholder="Platform"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="urlInput">URL</label>
+        <input
+          #urlInput
+          id="urlInput"
+          type="text"
+          placeholder="URL"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        (click)="addSocialLink(platformInput.value, urlInput.value)"
+      >
+        Sosyal Link Ekle
+      </button>
+    </section>
+
+    <section class="admin-section">
+      <h2>Mevcut Veriler</h2>
+
+      <div class="preview-block">
+        <h3>Mevcut Kullanici Bilgileri</h3>
+        <p><strong>Ad:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Avatar URL:</strong> {{ user.avatarUrl }}</p>
+        <p><strong>Bio:</strong> {{ user.bio }}</p>
+      </div>
+
+      <div class="preview-block" *ngIf="user.skills && user.skills.length > 0">
+        <h3>Mevcut Skilller</h3>
+        <ul>
+          <li *ngFor="let skill of user.skills">
+            {{ skill.name }} - Seviye {{ skill.level }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="preview-block" *ngIf="user.projects && user.projects.length > 0">
+        <h3>Mevcut Projeler</h3>
+        <ul>
+          <li *ngFor="let project of user.projects">
+            {{ project.title }} - {{ project.description }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="preview-block" *ngIf="user.socialLinks && user.socialLinks.length > 0">
+        <h3>Mevcut Sosyal Linkler</h3>
+        <ul>
+          <li *ngFor="let link of user.socialLinks">
+            {{ link.platform }} - {{ link.url }}
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

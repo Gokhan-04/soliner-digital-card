@@ -1,0 +1,98 @@
+/* Mevcut body ayarlarını bozmamak için üstüne ekleme yapıyoruz */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- KARANLIK MOD (DARK THEME) GLOBAL STİLLERİ --- */
+body.dark-theme {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* Sayfa Arka Planları */
+body.dark-theme .page-wrapper,
+body.dark-theme .admin-page {
+  background: #0f172a !important;
+}
+
+/* Kartlar ve Kutu Alanları */
+body.dark-theme .card-container,
+body.dark-theme .admin-card,
+body.dark-theme .preview-block,
+body.dark-theme .project-card,
+body.dark-theme .skill-list li {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Metin Renkleri */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme label,
+body.dark-theme li {
+  color: #f8fafc !important;
+}
+
+/* Soluk Metinler (Açıklamalar ve Biyografi) */
+body.dark-theme .bio,
+body.dark-theme .skill-level,
+body.dark-theme .project-card p {
+  color: #94a3b8 !important;
+}
+
+/* Yetenek Seviyesi Arka Planı */
+body.dark-theme .skill-level {
+  background: #334155 !important;
+}
+
+/* Input ve Textarea Alanları */
+body.dark-theme input,
+body.dark-theme textarea {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-theme input:focus,
+body.dark-theme textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2) !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Sosyal Medya Butonları */
+body.dark-theme .social-button {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+body.dark-theme .social-button:hover {
+  background: #2563eb !important;
+}
+
+/* --- YENİ EKLENEN: Karanlık Mod - Başarı ve Hata Mesajları --- */
+body.dark-theme .success-message {
+  color: #4ade80 !important;
+  background: rgba(74, 222, 128, 0.1) !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid #4ade80 !important;
+}
+
+body.dark-theme .error-message {
+  color: #f87171 !important;
+  background: rgba(248, 113, 113, 0.1) !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid #f87171 !important;
+}
